@@ -19,15 +19,12 @@ hour: number | null = null;
 minute: number | null = null;
 
   constructor() {
-    console.debug('date in constructor', this.date)
    }
 
   ngOnInit(): void {
-    console.debug('date in ngOnInit', this.date)
   }
 
   ngOnChanges(){
-    console.debug('date in ngOnChanges', this.date)
 
     if(!this.date){
       return;

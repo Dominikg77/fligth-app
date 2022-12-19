@@ -3,9 +3,7 @@ import { FlightService } from './flight.service';
 import { Observable, of } from 'rxjs';
 import { Flight } from './flight';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DummyFlightService implements FlightService {
 
   constructor() { }

@@ -5,10 +5,7 @@ import { DefaultFlightService } from './default-flight.service';
 import { DummyFlightService } from './dummy-flight.service';
 
 
-@Injectable({
-  providedIn: 'root',
-  useClass: DefaultFlightService
-})
+@Injectable()
 export abstract class FlightService {
 
 abstract find(from: string, to: string): Observable<Flight[]>

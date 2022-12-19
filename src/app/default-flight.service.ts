@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Flight } from './flight';
 import { Observable } from 'rxjs';
+import { FlightService } from './flight.service';
 
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class DefaultFlightService {
+@Injectable()
+export class DefaultFlightService implements FlightService {
 
  constructor(private http: HttpClient) { }
 
