@@ -10,3 +10,16 @@
   color: red;
   margin-bottom: 10px;
 }
+
+input.ng-invalid {
+
+  border-left-color:red ;
+  border-left-style:solid ;
+  border-left-width: 5px;
+}
+
+input.ng-valid {
+  border-left-color:green ;
+  border-left-style:solid ;
+  border-left-width: 5px;
+}

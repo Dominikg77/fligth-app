@@ -5,7 +5,7 @@
 
   <div class="form-group">
     <label> From:</label>
-    <input  [(ngModel)]="from" [ngModelOptions]="{updateOn: 'blur'}" name="from" required minlength="3" class="form-control">
+    <input  [(ngModel)]="from" [ngModelOptions]="{updateOn: 'blur'}" name="from" required minlength="3" maxlength="30" class="form-control" [appCity]="'Graz,München,Hamburg,Zürich'" [strict]="true">
   </div>
 
   <div class="error" *ngIf="!f?.controls?.['from']?.valid">
@@ -18,6 +18,10 @@
 
   <div class="error" *ngIf="f?.controls?.['from']?.hasError('minlength')">
     Erfassen Sie bitte min. {{f?.controls?.['from']?.errors?.[minlength]?.requiredLenght}} Zeichen.
+  </div>
+
+  <div class="error"  *ngIf="f?.controls?.['from']?.hasError('appCity')">
+    Die Stadt wird nicht angefolgen. Wählen sie folgende aus: {{f?.controls?.['from']?.errors?.['appCity']?.allowedCities | json}}
   </div>
 
   <div class="error" *ngIf="f?.controls?.['from']?.errors">

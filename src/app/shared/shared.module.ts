@@ -5,6 +5,7 @@ import { DateComponent } from '../date/date.component';
 import { CityPipe } from './city.pipe';
 import { StatusColorPipe } from './status-color.pipe';
 import { StatusFilterPipe } from './status-filter.pipe';
+import { CityValidationDirective } from './validation/city-validation.directive';
 
 
 
@@ -14,8 +15,7 @@ import { StatusFilterPipe } from './status-filter.pipe';
     CityPipe,
     StatusColorPipe,
     StatusFilterPipe,
-
-
+    CityValidationDirective,
 
   ],
   imports: [
@@ -26,6 +26,7 @@ DateComponent,
 CityPipe,
 StatusColorPipe,
 StatusFilterPipe,
+CityValidationDirective,
 // kriegt jedes andere Modul mit über
 CommonModule,
 
