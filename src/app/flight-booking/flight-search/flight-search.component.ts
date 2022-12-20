@@ -23,6 +23,7 @@ export class FlightSearchComponent implements OnInit {
     // 3: true,
     // 5: true,
   }
+minlength: any;
 
   constructor(private flightService: FlightService) {
 if (flightService instanceof DummyFlightService){
