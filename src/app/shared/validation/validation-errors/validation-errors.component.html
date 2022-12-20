@@ -1,0 +1,11 @@
+<div *ngIf="errors?.['required']" class="error">
+  This field ist required
+</div>
+
+<div *ngIf="errors?.['minlength']" class="error">
+  Please enter at least {{errors?.['minlength']?.required}} characters
+</div>
+
+<div *ngIf="errors?.['appCity'] && !errors?.['required'] && !errors?.['minlength']" class="error">
+  This city is now allowed
+</div>

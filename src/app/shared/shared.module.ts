@@ -6,6 +6,9 @@ import { CityPipe } from './city.pipe';
 import { StatusColorPipe } from './status-color.pipe';
 import { StatusFilterPipe } from './status-filter.pipe';
 import { CityValidationDirective } from './validation/city-validation.directive';
+import { RoundTripValidationDirective } from './validation/round-trip-validation.directive';
+import { AsyncCityValidationDirective } from './validation/async-city-validation.directive';
+import { ValidationErrorsComponent } from './validation/validation-errors/validation-errors.component';
 
 
 
@@ -16,6 +19,9 @@ import { CityValidationDirective } from './validation/city-validation.directive'
     StatusColorPipe,
     StatusFilterPipe,
     CityValidationDirective,
+    RoundTripValidationDirective,
+    AsyncCityValidationDirective,
+    ValidationErrorsComponent,
 
   ],
   imports: [
@@ -27,8 +33,15 @@ CityPipe,
 StatusColorPipe,
 StatusFilterPipe,
 CityValidationDirective,
+RoundTripValidationDirective,
+AsyncCityValidationDirective,
+ValidationErrorsComponent,
+
+
+
 // kriegt jedes andere Modul mit über
 CommonModule,
+  ValidationErrorsComponent,
 
   ]
 })

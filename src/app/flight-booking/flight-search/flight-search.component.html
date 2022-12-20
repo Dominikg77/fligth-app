@@ -1,14 +1,28 @@
 <h1>Flight Search</h1>
 
 
-<form #f="ngForm">
+
+<form #f="ngForm" appRoundTrip>
+
+  <div class="error" *ngIf="f?.errors">
+    {{f.errors | json}}
+  </div>
+
+  <div class="error" *ngIf="f?.hasError('appRoundTrip')">
+    Round Trips are not supported
+  </div>
+
 
   <div class="form-group">
     <label> From:</label>
-    <input  [(ngModel)]="from" [ngModelOptions]="{updateOn: 'blur'}" name="from" required minlength="3" maxlength="30" class="form-control" [appCity]="'Graz,München,Hamburg,Zürich'" [strict]="true">
+    <input  [(ngModel)]="from" [ngModelOptions]="{updateOn: 'blur'}" name="from" required minlength="3" maxlength="30" class="form-control" [appCity]="'Graz,München,Hamburg,Zürich'" [strict]="true" appAsyncCity>
   </div>
 
-  <div class="error" *ngIf="!f?.controls?.['from']?.valid">
+
+
+  <app-validation-errors [errors]="f?.controls?.['from']?.errors" >  </app-validation-errors>
+
+  <!-- <div class="error" *ngIf="!f?.controls?.['from']?.valid">
     Es liegt ein Validierungsfehler für diese Eingabe vor
   </div>
 
@@ -20,13 +34,14 @@
     Erfassen Sie bitte min. {{f?.controls?.['from']?.errors?.[minlength]?.requiredLenght}} Zeichen.
   </div>
 
-  <div class="error"  *ngIf="f?.controls?.['from']?.hasError('appCity')">
+  <div class="error"  *ngIf="f?.controls?.['from']?.hasError('appAsyncCity')">
     Die Stadt wird nicht angefolgen. Wählen sie folgende aus: {{f?.controls?.['from']?.errors?.['appCity']?.allowedCities | json}}
   </div>
 
+
   <div class="error" *ngIf="f?.controls?.['from']?.errors">
     Internes Errors-Objekt: {{f?.controls?.['from']?.errors | json}}
-  </div>
+  </div> -->
 
 
   <div class="form-group">
