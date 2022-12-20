@@ -16,6 +16,8 @@ export class FlightSearchComponent implements OnInit {
   flights: Array<Flight> = []
   selectedFlight: Flight | null = null;
   date: string =(new Date().toISOString())
+  delayFilter = false
+
 
   basket: {[ key: number]: boolean} = {
     // 3: true,
@@ -27,7 +29,6 @@ if (flightService instanceof DummyFlightService){
   console.log('Eigentlich Dummy Service')
 }
 
-
   }
 
   ngOnInit() {
@@ -35,8 +36,6 @@ if (flightService instanceof DummyFlightService){
     this.search()
 
   }
-
-
 
   search(): void {
 
