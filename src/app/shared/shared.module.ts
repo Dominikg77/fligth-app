@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DateComponent } from '../date/date.component';
 import { CityPipe } from './city.pipe';
 import { StatusColorPipe } from './status-color.pipe';
 import { StatusFilterPipe } from './status-filter.pipe';
 import { CityValidationDirective } from './validation/city-validation.directive';
 import { RoundTripValidationDirective } from './validation/round-trip-validation.directive';
+import { ReaktiveCityValidatorDirective } from './validation/reactive/reaktive-city-validator.directive';
 import { AsyncCityValidationDirective } from './validation/async-city-validation.directive';
 import { ValidationErrorsComponent } from './validation/validation-errors/validation-errors.component';
+
+
 
 
 
@@ -20,13 +23,16 @@ import { ValidationErrorsComponent } from './validation/validation-errors/valida
     StatusFilterPipe,
     CityValidationDirective,
     RoundTripValidationDirective,
+    ReaktiveCityValidatorDirective,
     AsyncCityValidationDirective,
-    ValidationErrorsComponent,
+    ValidationErrorsComponent
 
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
+
   ], exports: [
 DateComponent,
 CityPipe,
@@ -34,14 +40,13 @@ StatusColorPipe,
 StatusFilterPipe,
 CityValidationDirective,
 RoundTripValidationDirective,
+ReaktiveCityValidatorDirective,
 AsyncCityValidationDirective,
 ValidationErrorsComponent,
 
 
-
 // kriegt jedes andere Modul mit über
 CommonModule,
-  ValidationErrorsComponent,
 
   ]
 })

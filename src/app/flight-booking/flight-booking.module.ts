@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Flight_Booking_ROUTES  } from './flight-booking.routes'
 
@@ -18,6 +18,7 @@ import { FlightBookingComponent } from './flight-booking.component';
   imports: [
     FormsModule,
     SharedModule,
+    ReactiveFormsModule,
     RouterModule.forChild(Flight_Booking_ROUTES)
   ],
   declarations: [

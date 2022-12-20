@@ -2,6 +2,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http'
@@ -22,6 +23,8 @@ import { BasketComponent } from './basket/basket.component';
       BrowserModule,
       HttpClientModule,
 FlightBookingModule,
+// FormsModule,
+// ReactiveFormsModule,
 RouterModule.forRoot(APP_ROUTES , {enableTracing: true}
   )
    ],

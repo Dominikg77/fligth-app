@@ -15,39 +15,21 @@
 
   <div class="form-group">
     <label> From:</label>
-    <input  [(ngModel)]="from" [ngModelOptions]="{updateOn: 'blur'}" name="from" required minlength="3" maxlength="30" class="form-control" [appCity]="'Graz,München,Hamburg,Zürich'" [strict]="true" appAsyncCity>
+    <input [(ngModel)]="from" name="from" [ngModelOptions]="{updateOn: 'blur'}" required minlength="3" maxlength="30"
+      class="form-control" [appCity]="'Graz,München,Hamburg,Zürich'" [strict]="true" appAsyncCity>
   </div>
 
-
-
-  <app-validation-errors [errors]="f?.controls?.['from']?.errors" >  </app-validation-errors>
-
-  <!-- <div class="error" *ngIf="!f?.controls?.['from']?.valid">
-    Es liegt ein Validierungsfehler für diese Eingabe vor
-  </div>
-
-  <div class="error" *ngIf="f?.controls?.['from']?.hasError('required')">
-    Diese Feld ist ein Pflichfeld
-  </div>
-
-  <div class="error" *ngIf="f?.controls?.['from']?.hasError('minlength')">
-    Erfassen Sie bitte min. {{f?.controls?.['from']?.errors?.[minlength]?.requiredLenght}} Zeichen.
-  </div>
-
-  <div class="error"  *ngIf="f?.controls?.['from']?.hasError('appAsyncCity')">
-    Die Stadt wird nicht angefolgen. Wählen sie folgende aus: {{f?.controls?.['from']?.errors?.['appCity']?.allowedCities | json}}
-  </div>
-
-
-  <div class="error" *ngIf="f?.controls?.['from']?.errors">
-    Internes Errors-Objekt: {{f?.controls?.['from']?.errors | json}}
-  </div> -->
-
+  <app-validation-errors [errors]="f?.controls?.['from']?.errors"></app-validation-errors>
 
   <div class="form-group">
     <label> To:</label>
-    <input [(ngModel)]="to" name="to" class="form-control">
+    <input [(ngModel)]="to" name="to" [ngModelOptions]="{updateOn: 'blur'}" required minlength="3" maxlength="30"
+      class="form-control" [appCity]="'Graz,München,Hamburg,Zürich'" [strict]="true" appAsyncCity>
   </div>
+  <app-validation-errors [errors]="f?.controls?.['to']?.errors"></app-validation-errors>
+
+
+
 
   <div class="form-group">
     <label> Date:</label>
@@ -64,8 +46,34 @@
   <input [(ngModel)]="delayFilter" type="checkbox" id="delayFilter" name="delayFilter">
   &nbsp;
   <label for="delayFilter">Delayed</label>
+</div>
+
+<div class="from-group">
+  <label>
+    <input [(ngModel)]="nonstop" type="checkbox" name="nonstop">
+    &nbsp;
+    Nonstop
+  </label>
+</div>
+
+<div class="form-group">
+  <label>Flght Class</label>
+  <div *ngFor="let c of flightClasses ">
+    <label>
+      <input  type="radio" name="flightClass" [(ngModel)]="flightClass" [value]="c">{{c.name}}
+    </label>
+  </div>
+</div>
+
+<div class="form-group">
+<label>Luggage</label>
+<select [(ngModel)]="luggage" name="luggage" class="form-control">
+
+  <option *ngFor="let i of luggageOptions" [ngValue]="i">{{i.name}}</option>
+</select>
 
 </div>
+
 
 <!-- <table class="table table-striped">
   <tr *ngFor="let flight of flights" [ngClass]="{'active': flight === selectedFlight}">
