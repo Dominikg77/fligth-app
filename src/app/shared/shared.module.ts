@@ -5,7 +5,6 @@ import { DateComponent } from '../date/date.component';
 import { CityPipe } from './city.pipe';
 import { StatusColorPipe } from './status-color.pipe';
 import { StatusFilterPipe } from './status-filter.pipe';
-import { CityService } from './city.service';
 
 
 
@@ -27,6 +26,8 @@ DateComponent,
 CityPipe,
 StatusColorPipe,
 StatusFilterPipe,
+// kriegt jedes andere Modul mit über
+CommonModule,
 
   ]
 })

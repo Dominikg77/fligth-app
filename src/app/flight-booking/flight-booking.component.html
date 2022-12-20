@@ -1,0 +1,21 @@
+<div class="card">
+
+  <div class="card-body">
+
+    <ul class="nav nav-secondary">
+      <li routerLinkActive="active">
+        <a [routerLink]="['./flight-search']"> Flug Auswählen</a>
+      </li>
+
+      &nbsp; | &nbsp;
+
+      <li routerLinkActive="active">
+        <a [routerLink]="['./passenger-search']"> Passagier Auswählen</a>
+      </li>
+    </ul>
+
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>

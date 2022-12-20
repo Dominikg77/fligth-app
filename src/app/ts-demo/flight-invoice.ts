@@ -1,4 +1,4 @@
-import { Flight } from "../flight";
+import { Flight } from '../flight-booking/flight';
 
 export class FlightInvoice <T extends Flight> {
 

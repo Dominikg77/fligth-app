@@ -10,26 +10,28 @@
       </a>
     </div>
       <ul class="nav">
-        <li class="active">
-            <a href="#" >
+        <li routerLinkActive="active" >
+            <a routerLink="home">
                 <p>Home</p>
             </a>
         </li>
 
-        <li>
-            <a>
-                <p>Flights</p>
+        <li routerLinkActive="active" >
+            <a routerLink="flight-booking">
+                <p>Flights Booking</p>
             </a>
         </li>
 
-        <li>
-            <a>
-                <p>Passengers</p>
-            </a>
-        </li>
 
-        <li routerLinkActive="active">
-            <a>
+
+        <li routerLinkActive="active" >
+          <a routerLink="about">
+              <p>About</p>
+          </a>
+      </li>
+
+        <li routerLinkActive="active" >
+            <a [routerLink]="['flight-booking/flight-search', {outlets:  {aux: 'basket'}}]" >
                 <p>Basket</p>
             </a>
         </li>
@@ -40,4 +42,4 @@
         </li>
       </ul>
   </div>
-  
+
