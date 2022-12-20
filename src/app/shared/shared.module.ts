@@ -7,7 +7,6 @@ import { StatusColorPipe } from './status-color.pipe';
 import { StatusFilterPipe } from './status-filter.pipe';
 import { CityValidationDirective } from './validation/city-validation.directive';
 import { RoundTripValidationDirective } from './validation/round-trip-validation.directive';
-import { ReaktiveCityValidatorDirective } from './validation/reactive/reaktive-city-validator.directive';
 import { AsyncCityValidationDirective } from './validation/async-city-validation.directive';
 import { ValidationErrorsComponent } from './validation/validation-errors/validation-errors.component';
 
@@ -23,7 +22,6 @@ import { ValidationErrorsComponent } from './validation/validation-errors/valida
     StatusFilterPipe,
     CityValidationDirective,
     RoundTripValidationDirective,
-    ReaktiveCityValidatorDirective,
     AsyncCityValidationDirective,
     ValidationErrorsComponent
 
@@ -40,7 +38,6 @@ StatusColorPipe,
 StatusFilterPipe,
 CityValidationDirective,
 RoundTripValidationDirective,
-ReaktiveCityValidatorDirective,
 AsyncCityValidationDirective,
 ValidationErrorsComponent,
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms'
 import { ThisReceiver } from '@angular/compiler';
+import { cityValidator } from 'src/app/shared/validation/reactive/r-validator-city';
+import { cityWithParamsValidator } from 'src/app/shared/validation/reactive/city-with-params-validator';
 
 @Component({
   selector: 'app-flight-edit',
@@ -23,11 +25,14 @@ export class FlightEditComponent implements OnInit {
       id: [],
       from: [
         'Graz',
-        [Validators.required, Validators.minLength(3)]
+        [Validators.required, Validators.minLength(3), cityWithParamsValidator(['Graz', 'Hamburg'])]
       ],
       to: ['Hamburg'],
       date: [],
       delayed: []
+    },
+    {
+      updateOn: 'blur'
     });
 
     this.formGroup.controls?.['delayed'].statusChanges.subscribe(
@@ -48,8 +53,8 @@ this.formGroup.statusChanges.subscribe(
 
     this.formGroup.patchValue({
       id: 17,
-      from: 'hier',
-      to: 'da',
+      from: 'Hamburg',
+      to: 'Graz',
       date: new Date().toISOString(),
       delayed: true
 
