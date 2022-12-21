@@ -1,16 +1,39 @@
 <form [formGroup]="formGroup">
 
+
+  <div class="error" *ngIf="formGroup.hasError('roundTrip')">
+    Round Trips are not supported!
+  </div>
+
+
   <div class="form-group">
     <label>Id:</label>
     <input formControlName="id" class="form-control">
   </div>
 
+<fieldset  >
+
+
+
+</fieldset>
+
+
+
+
   <div class="form-group">
     <label>From:</label>
     <input formControlName="from" class="form-control">
 
-    <div class="error" *ngIf="!formGroup.controls?.['from']?.valid">
+    <div class="error" *ngIf="formGroup.controls?.['from']?.valid === false">
       Validierungsfehler
+    </div>
+
+    <div class="error" *ngIf="formGroup.controls?.['from']?.pending">
+      Validationg
+    </div>
+
+    <div class="error" *ngIf="formGroup.controls?.['from']?.hasError('asyncCity')">
+      There is no fligh for this City
     </div>
 
     <div class="error" *ngIf="formGroup.controls?.['from']?.hasError('required')">

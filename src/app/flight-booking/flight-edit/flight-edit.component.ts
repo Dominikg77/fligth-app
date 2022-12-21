@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms'
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { ThisReceiver } from '@angular/compiler';
 import { cityValidator } from 'src/app/shared/validation/reactive/r-validator-city';
 import { cityWithParamsValidator } from 'src/app/shared/validation/reactive/city-with-params-validator';
+import { FlightService } from '../flight.service';
+import { asyncCityValidator } from 'src/app/shared/validation/reactive/async-city-validator';
+import { roundTripValidator } from 'src/app/shared/validation/reactive/round-trip-validator';
 
 @Component({
   selector: 'app-flight-edit',
@@ -13,43 +16,70 @@ import { cityWithParamsValidator } from 'src/app/shared/validation/reactive/city
 export class FlightEditComponent implements OnInit {
 
 
-  formGroup: FormGroup ;
+  formGroup: FormGroup;
+  routeFormGroup:FormGroup | undefined;
+
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private flightService: FlightService) {
 
 
-  // id = 0;
-  // showDetails = false;
+    this.routeFormGroup = fb.group({
+      id: [],
+      from: [
+        'Graz',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          cityWithParamsValidator(['Tripsdrill', 'Graz', 'Hamburg', 'Zürich'])
+        ],
+        [
+          asyncCityValidator(flightService)
+        ]
+      ],
+      to: ['Hamburg'],
+    },
+    {
+      validators: [roundTripValidator()]
+    });
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder ) {
+    this.formGroup = fb.group({
+      id: [],
+      route: this.routeFormGroup,
+      date: [],
+      delayed: []
+    })
 
     this.formGroup = fb.group({
       id: [],
       from: [
         'Graz',
-        [Validators.required, Validators.minLength(3), cityWithParamsValidator(['Graz', 'Hamburg'])]
+        [
+          Validators.required,
+          Validators.minLength(3),
+          cityWithParamsValidator(['Tripsdrill', 'Graz', 'Hamburg', 'Zürich'])
+        ],
+        [
+          asyncCityValidator(flightService)
+        ]
       ],
       to: ['Hamburg'],
       date: [],
       delayed: []
     },
-    {
-      updateOn: 'blur'
-    });
+      {
+        updateOn: 'blur',
+        validators: [roundTripValidator()]
+      });
 
     this.formGroup.controls?.['delayed'].statusChanges.subscribe(
       value => console.debug('deleayed changed', value))
 
-this.formGroup.statusChanges.subscribe(
-  value => console.debug('whole form changed', value)
-)
+    this.formGroup.statusChanges.subscribe(
+      value => console.debug('whole form changed', value)
+    )
 
   }
 
   ngOnInit(): void {
-
-    // this.route.params.subscribe( p => {
-    //   this.id = p['id'];
-    //   this.showDetails = p['showDetails'];
-    // } )
 
     this.formGroup.patchValue({
       id: 17,
@@ -57,10 +87,7 @@ this.formGroup.statusChanges.subscribe(
       to: 'Graz',
       date: new Date().toISOString(),
       delayed: true
-
     })
-
-
   }
 
   save(): void {
