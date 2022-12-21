@@ -13,6 +13,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { APP_ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { BasketComponent } from './basket/basket.component';
+import { FlightTypeaheadComponent } from './flight-typeahead/flight-typeahead.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,6 +24,7 @@ import { BasketComponent } from './basket/basket.component';
    imports: [
       BrowserModule,
       HttpClientModule,
+      ReactiveFormsModule,
 FlightBookingModule,
 // FormsModule,
 // ReactiveFormsModule,
@@ -36,6 +39,7 @@ RouterModule.forRoot(APP_ROUTES , {enableTracing: true}
       AboutComponent,
       NotFoundComponent,
       BasketComponent,
+      FlightTypeaheadComponent,
 
    ],
    providers: [ ],

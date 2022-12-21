@@ -1,76 +1,91 @@
 <form [formGroup]="formGroup">
 
-
-  <div class="error" *ngIf="formGroup.hasError('roundTrip')">
-    Round Trips are not supported!
-  </div>
-
-
   <div class="form-group">
     <label>Id:</label>
     <input formControlName="id" class="form-control">
   </div>
 
-<fieldset  >
+  <fieldset formGroupName="route">
+    <!-- Alternative: [formGroup]="routeFormGroup" -->
 
-
-
-</fieldset>
-
-
-
-
-  <div class="form-group">
-    <label>From:</label>
-    <input formControlName="from" class="form-control">
-
-    <div class="error" *ngIf="formGroup.controls?.['from']?.valid === false">
-      Validierungsfehler
+    <div class="error" *ngIf="routeFormGroup.hasError('roundTrip')">
+      Round Trips are not supported!
     </div>
 
-    <div class="error" *ngIf="formGroup.controls?.['from']?.pending">
-      Validationg
+    <div class="form-group">
+      <label>From:</label>
+      <input formControlName="from" class="form-control">
+      <div class="error" *ngIf="routeFormGroup.controls?.['from']?.valid === false">
+        Validation Error!
+      </div>
+      <div class="error" *ngIf="routeFormGroup.controls?.['from']?.pending">
+        Validating Form ...
+      </div>
+      <div class="error" *ngIf="routeFormGroup.controls?.['from']?.hasError('asyncCity')">
+        There is no flight for this city!
+      </div>
+
+      <div class="error" *ngIf="routeFormGroup.controls?.['from']?.hasError('required')">
+        This field is required!
+      </div>
+      <div class="error" *ngIf="routeFormGroup.controls?.['from']?.hasError('minlength')">
+        Type in 3 charcters at least
+      </div>
+      <div class="error" *ngIf="routeFormGroup.controls?.['from']?.hasError('city')">
+        This city is not supported!
+      </div>
     </div>
-
-    <div class="error" *ngIf="formGroup.controls?.['from']?.hasError('asyncCity')">
-      There is no fligh for this City
-    </div>
-
-    <div class="error" *ngIf="formGroup.controls?.['from']?.hasError('required')">
-      Pflichtfeld!
-    </div>
-
-    <div class="error" *ngIf="formGroup.controls?.['from']?.hasError('minlength')">
-      Min. 3 Zeichen
-    </div>
-
-
-    <div class="error" *ngIf="formGroup.controls?.['from']?.hasError('city')">
-      This city is not supported!
-    </div>
-
-
 
     <div class="form-group">
       <label>To:</label>
       <input formControlName="to" class="form-control">
     </div>
+  </fieldset>
 
-    <div class="form-group">
-      <label>Date:</label>
-      <input formControlName="date" class="form-control">
-    </div>
-
-    <div class="form-group">
-      <input type="checkbox" formControlName="delayed">
-      &nbsp;
-      <label>Delayed:</label>
-    </div>
-
-    <button class="btn btn-default" (click)="save()">Save</button>
-
-
+  <div class="form-group">
+    <label>Date:</label>
+    <input formControlName="date" class="form-control">
   </div>
 
+  <div class="form-group">
+    <input formControlName="delayed" type="checkbox">
+    &nbsp;
+    <label>Delayed:</label>
+  </div>
+
+
+  <fieldset formArrayName="categories">
+
+    <div *ngFor="let group of categoriesFromArray.controls; let i = index" [formGroupName]="i" class="form-group">
+      <label>Category Name:</label>
+      <input formControlName="categoryName" class="form-control">
+      <label>Base Price:</label>
+      <input formControlName="basePrice" class="form-control">
+    </div>
+
+  </fieldset>
+
+  <button class="btn btn-default" (click)="addCategory()">Add Category</button>
+
+
+  <button class="btn btn-default" (click)="save()">Save</button>
+
+</form>
+
+<h2>Dynamic Form</h2>
+
+<form [formGroup]="formGroup">
+
+  <div *ngFor="let item of metaData" class="form-group">
+    <label>{{item.label}}</label>
+    <input *ngIf="item.type === 'text'" [formControlName]="item.name" class="form-control">
+
+    <input *ngIf="item.type === 'checkbox'" type="checkbox" [formControlName]="item.name">
+
+    <div *ngIf="item.type === 'readonly'">
+      {{formGroup.controls[item.name].value | json}}
+    </div>
+
+  </div>
 
 </form>
